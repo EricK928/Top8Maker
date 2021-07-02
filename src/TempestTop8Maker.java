@@ -6,7 +6,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class TempestTop8Maker extends JFrame
 {
-	static String[] characters = {"Mario", "Donkey Kong", "Link", "Samus", "Dark Samus", "Yoshi", "Kirby", "Fox", "Pikachu", "Luigi", "Ness", "Captain Falcon", "Jigglypuff", "Peach", "Daisy", "Bowser", "Ice Climbers", "Sheik", "Zelda", "Doctor Mario", "Pichu", "Falco", "Marth", "Lucina", "Young Link", "Ganondorf", "Mewtwo", "Roy", "Chrom", "Mr. Game & Watch", "Meta Knight", "Pit", "Dark Pit", "Zero Suit Samus", "Wario", "Snake", "Ike", "Pokemon Trainer", "Diddy Kong", "Lucas", "Sonic", "King Dedede", "Olimar", "Lucario", "R.O.B.", "Toon Link", "Wolf", "Villager", "Megaman", "Wii Fit Trainer", "Rosalina & Luma", "Little Mac", "Greninja", "Palutena", "Pac-man", "Robin", "Shulk", "Bowser Jr.", "Duck Hunt", "Ryu", "Ken", "Cloud", "Corrin", "Bayonetta", "Inkling", "Ridley", "Simon", "Richter", "King K. Rool", "Isabelle", "Incineroar", "Piranha Plant", "Joker", "Hero", "Banjo & Kazooie", "Terry", "Byleth", "Min-Min", "Steve", "Sephiroth", "Pyra", "Mythra", "Mii Brawler", "Mii Swordfighter", "Mii Gunner"};//"Kazuya", 
+	static String[] characters = {"Mario", "Donkey Kong", "Link", "Samus", "Dark Samus", "Yoshi", "Kirby", "Fox", "Pikachu", "Luigi", "Ness", "Captain Falcon", "Jigglypuff", "Peach", "Daisy", "Bowser", "Ice Climbers", "Sheik", "Zelda", "Doctor Mario", "Pichu", "Falco", "Marth", "Lucina", "Young Link", "Ganondorf", "Mewtwo", "Roy", "Chrom", "Mr. Game & Watch", "Meta Knight", "Pit", "Dark Pit", "Zero Suit Samus", "Wario", "Snake", "Ike", "Pokemon Trainer", "Diddy Kong", "Lucas", "Sonic", "King Dedede", "Olimar", "Lucario", "R.O.B.", "Toon Link", "Wolf", "Villager", "Megaman", "Wii Fit Trainer", "Rosalina & Luma", "Little Mac", "Greninja", "Palutena", "Pac-man", "Robin", "Shulk", "Bowser Jr.", "Duck Hunt", "Ryu", "Ken", "Cloud", "Corrin", "Bayonetta", "Inkling", "Ridley", "Simon", "Richter", "King K. Rool", "Isabelle", "Incineroar", "Piranha Plant", "Joker", "Hero", "Banjo & Kazooie", "Terry", "Byleth", "Min-Min", "Steve", "Sephiroth", "Pyra", "Mythra", "Mii Brawler", "Mii Swordfighter", "Mii Gunner"};//"Kazuya",
 	static String[] alts = {"1","2","3","4","5","6","7","8"};
 	static String bgLocation=null;
     //JFrame
@@ -33,7 +33,7 @@ public class TempestTop8Maker extends JFrame
         f = new JFrame("Set specifications");
 
         JLabel blank=new JLabel("  ");
-        
+
         JLabel altText1=new JLabel(" Alt:");
         JLabel altText2=new JLabel(" Alt:");
         JLabel altText3=new JLabel(" Alt:");
@@ -201,7 +201,7 @@ public class TempestTop8Maker extends JFrame
         JPanel p = new JPanel();
 
         // add buttons and textfield to panel
-        
+
         p.add(tournamentName);
         p.add(tName);
         p.add(tournamentNum);
@@ -260,7 +260,7 @@ public class TempestTop8Maker extends JFrame
         p.add(p5char);
         p.add(altText5);
         p.add(p5alt);
-        
+
         p.add(p6name);
         p.add(p6NameIn);
         p.add(p6twitter);
@@ -269,7 +269,7 @@ public class TempestTop8Maker extends JFrame
         p.add(p6char);
         p.add(altText6);
         p.add(p6alt);
-        
+
         p.add(p7name);
         p.add(p7NameIn);
         p.add(p7twitter);
@@ -287,7 +287,7 @@ public class TempestTop8Maker extends JFrame
         p.add(p8char);
         p.add(altText8);
         p.add(p8alt);
-        
+
 		p.add(blank);
 
        /* p.add(meleeWinner);
@@ -307,7 +307,7 @@ public class TempestTop8Maker extends JFrame
         f.add(p);
 
         // set the size of frame
-        f.setSize(365, 885);
+        f.setSize(365, 900);
         f.setResizable(false);
 
         f.show();
