@@ -4,19 +4,21 @@ import java.awt.*;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-public class TempestTop8Maker extends JFrame
+public class Top8Maker extends JFrame
 {
-	static String[] characters = {"Mario", "Donkey Kong", "Link", "Samus", "Dark Samus", "Yoshi", "Kirby", "Fox", "Pikachu", "Luigi", "Ness", "Captain Falcon", "Jigglypuff", "Peach", "Daisy", "Bowser", "Ice Climbers", "Sheik", "Zelda", "Doctor Mario", "Pichu", "Falco", "Marth", "Lucina", "Young Link", "Ganondorf", "Mewtwo", "Roy", "Chrom", "Mr. Game & Watch", "Meta Knight", "Pit", "Dark Pit", "Zero Suit Samus", "Wario", "Snake", "Ike", "Pokemon Trainer", "Diddy Kong", "Lucas", "Sonic", "King Dedede", "Olimar", "Lucario", "R.O.B.", "Toon Link", "Wolf", "Villager", "Megaman", "Wii Fit Trainer", "Rosalina & Luma", "Little Mac", "Greninja", "Palutena", "Pac-man", "Robin", "Shulk", "Bowser Jr.", "Duck Hunt", "Ryu", "Ken", "Cloud", "Corrin", "Bayonetta", "Inkling", "Ridley", "Simon", "Richter", "King K. Rool", "Isabelle", "Incineroar", "Piranha Plant", "Joker", "Hero", "Banjo & Kazooie", "Terry", "Byleth", "Min-Min", "Steve", "Sephiroth", "Pyra", "Mythra", "Mii Brawler", "Mii Swordfighter", "Mii Gunner"};//"Kazuya",
+	static String[] characters = {"Mario", "Donkey Kong", "Link", "Samus", "Dark Samus", "Yoshi", "Kirby", "Fox", "Pikachu", "Luigi", "Ness", "Captain Falcon", "Jigglypuff", "Peach", "Daisy", "Bowser", "Ice Climbers", "Sheik", "Zelda", "Doctor Mario", "Pichu", "Falco", "Marth", "Lucina", "Young Link", "Ganondorf", "Mewtwo", "Roy", "Chrom", "Mr. Game & Watch", "Meta Knight", "Pit", "Dark Pit", "Zero Suit Samus", "Wario", "Snake", "Ike", "Pokemon Trainer", "Diddy Kong", "Lucas", "Sonic", "King Dedede", "Olimar", "Lucario", "R.O.B.", "Toon Link", "Wolf", "Villager", "Megaman", "Wii Fit Trainer", "Rosalina & Luma", "Little Mac", "Greninja", "Palutena", "Pac-man", "Robin", "Shulk", "Bowser Jr.", "Duck Hunt", "Ryu", "Ken", "Cloud", "Corrin", "Bayonetta", "Inkling", "Ridley", "Simon", "Richter", "King K. Rool", "Isabelle", "Incineroar", "Piranha Plant", "Joker", "Hero", "Banjo & Kazooie", "Terry", "Byleth", "Min-Min", "Steve", "Sephiroth", "Pyra", "Mythra", "Kazuya", "Mii Brawler", "Mii Swordfighter", "Mii Gunner"};// 
 	static String[] alts = {"1","2","3","4","5","6","7","8"};
-	static String bgLocation=null;
+	static String bgLocation, boardLocation=null;
     //JFrame
-    static JFrame f;
+    static JFrame f, colorPick;
 
     //JButton
-    static JButton gen, bgSelect;
+    static JButton gen, bgSelect, boardSelect, colorSelect;
+    
+    static JColorChooser boarder;
 
     //JFileChooser
-    static JFileChooser bgSelector;
+    static JFileChooser bgSelector, boardSelector;
 
     //JLabels
     static JLabel tournamentName, tournamentNum, tournamentDate, numEntrants, tournamentLoc, tournamentUrl, p1name, p1character, p1twitter, p2name, p2character, p2twitter, p3name, p3character, p3twitter, p4name, p4character, p4twitter, p5name, p5character, p5twitter, p6name, p6character, p6twitter, p7name, p7character, p7twitter, p8name, p8character, p8twitter;
@@ -29,11 +31,11 @@ public class TempestTop8Maker extends JFrame
 
     public static void main(String[] args)
     {
-        // create a new frame to store text field and button
+        //Creates the JFrame
         f = new JFrame("Set specifications");
 
         JLabel blank=new JLabel("  ");
-
+        
         JLabel altText1=new JLabel(" Alt:");
         JLabel altText2=new JLabel(" Alt:");
         JLabel altText3=new JLabel(" Alt:");
@@ -43,7 +45,7 @@ public class TempestTop8Maker extends JFrame
         JLabel altText7=new JLabel(" Alt:");
         JLabel altText8=new JLabel(" Alt:");
 
-        // create a label to display text
+        //Create the labels
         p1name=new JLabel("1st place name: ");
         p1twitter=new JLabel("1st place Twitter: ");
         p1character=new JLabel("1st place character: ");
@@ -82,11 +84,8 @@ public class TempestTop8Maker extends JFrame
         tournamentLoc=new JLabel("Tournament locale: ");
         numEntrants=new JLabel("# of Entrants: ");
         tournamentUrl=new JLabel("Tournament link: ");
-        /*meleeWinner=new JLabel("Melee winner: ");
-        rivalsWinner=new JLabel("Rivals winner: ");
-        doublesWinner=new JLabel("Doubles winners: ");*/
 
-        // creating input fields
+        //Creating input fields
         p1NameIn=new JTextField(20);
         p1TwitterIn=new JTextField(20);
 
@@ -117,11 +116,11 @@ public class TempestTop8Maker extends JFrame
         tLoc=new JTextField(20);
         entrantNum=new JTextField(20);
         tUrl=new JTextField(20);
-        /*mWin=new JTextField(20);
-        rWin=new JTextField(20);
-        dWin=new JTextField(20);*/
+        
+        boarder=new JColorChooser(new Color(0,0,0));
 
-        // create a new buttons
+
+        //Create the buttons
         gen = new JButton("Generate graphic");
 		gen.addActionListener(new ActionListener()
 		{
@@ -137,29 +136,39 @@ public class TempestTop8Maker extends JFrame
 				Player p6=new Player(p6NameIn.getText(),p6TwitterIn.getText(),(String)p6char.getSelectedItem(),(String)p6alt.getSelectedItem());
 				Player p7=new Player(p7NameIn.getText(),p7TwitterIn.getText(),(String)p7char.getSelectedItem(),(String)p7alt.getSelectedItem());
 				Player p8=new Player(p8NameIn.getText(),p8TwitterIn.getText(),(String)p8char.getSelectedItem(),(String)p8alt.getSelectedItem());
-
-				TournamentInfo ti=new TournamentInfo(tName.getText(), tNum.getText(), tDate.getText(), entrantNum.getText(), tLoc.getText(),bgLocation, tUrl.getText());
-				//Winners w=new Winners(mWin.getText(), rWin.getText(), dWin.getText());
+				
+				System.out.println();
+				
+				TournamentInfo ti=new TournamentInfo(tName.getText(), tNum.getText(), tDate.getText(), entrantNum.getText(), tLoc.getText(), tUrl.getText());
+				ImageLocations il=new ImageLocations(bgLocation, boardLocation);
 
 				JFrame img=new JFrame("Top 8 Graphic");
 				img.setSize(1296, 759);
-				//img.setUndecorated(true);
-
-				//ImageIcon image = new ImageIcon("./template.png");
-        		//JLabel imageLabel = new JLabel(image);
-        		//img.getContentPane().add(imageLabel);
-        		img.add(new ImageCreator(p1, p2, p3, p4, p5, p6, p7, p8, ti));
-        		//imageLabel.setBounds(0, 0, 1280, 720);
-				//imageLabel.setVisible(true);
-
-
+        		img.add(new ImageCreator(p1, p2, p3, p4, p5, p6, p7, p8, ti, il, boarder.getColor()));
 				img.setVisible(true);
-				img.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
 		    }
 		});
 
-		bgSelect = new JButton("Select Background");
+		boardSelect = new JButton("Select boarder");
+		boardSelect.addActionListener(new ActionListener()
+		{
+		    @Override
+		    public void actionPerformed(ActionEvent b)
+		    {
+		    	boardSelector = new JFileChooser();
+		        FileNameExtensionFilter filter = new FileNameExtensionFilter("JPG & PNG Images", "jpg", "png");
+		        boardSelector.setFileFilter(filter);
+		        int returnVal = boardSelector.showOpenDialog(null);
+		        if(returnVal == JFileChooser.APPROVE_OPTION)
+		        {
+		        	boardLocation=boardSelector.getSelectedFile().getPath();
+		            //System.out.println("You chose to open this file: " +boardSelector.getSelectedFile().getPath());
+		        }
+
+		    }
+		});
+		
+		bgSelect = new JButton("Select background");
 		bgSelect.addActionListener(new ActionListener()
 		{
 		    @Override
@@ -174,6 +183,22 @@ public class TempestTop8Maker extends JFrame
 		        	bgLocation=bgSelector.getSelectedFile().getPath();
 		            System.out.println("You chose to open this file: " +bgSelector.getSelectedFile().getPath());
 		        }
+
+		    }
+		});
+		
+		colorSelect = new JButton("Select boarder Color");
+		colorSelect.addActionListener(new ActionListener()
+		{
+		    @Override
+		    public void actionPerformed(ActionEvent b)
+		    {
+				JFrame color=new JFrame("Color picker");
+				color.add(boarder);
+				color.setSize(700, 500);
+        		//img.add(new ImageCreator(p1, p2, p3, p4, p5, p6, p7, p8, ti));
+				color.setVisible(true);
+				//color.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		    }
 		});
@@ -197,11 +222,11 @@ public class TempestTop8Maker extends JFrame
         p7alt = new JComboBox<String>(alts);
         p8alt = new JComboBox<String>(alts);
 
-        // create a panel to add buttons
+        //Panel to hold everything
         JPanel p = new JPanel();
 
-        // add buttons and textfield to panel
-
+        //Adding Everything
+        
         p.add(tournamentName);
         p.add(tName);
         p.add(tournamentNum);
@@ -223,7 +248,7 @@ public class TempestTop8Maker extends JFrame
         p.add(p1char);
         p.add(altText1);
         p.add(p1alt);
-
+        
         p.add(p2name);
         p.add(p2NameIn);
         p.add(p2twitter);
@@ -260,7 +285,7 @@ public class TempestTop8Maker extends JFrame
         p.add(p5char);
         p.add(altText5);
         p.add(p5alt);
-
+        
         p.add(p6name);
         p.add(p6NameIn);
         p.add(p6twitter);
@@ -269,7 +294,7 @@ public class TempestTop8Maker extends JFrame
         p.add(p6char);
         p.add(altText6);
         p.add(p6alt);
-
+        
         p.add(p7name);
         p.add(p7NameIn);
         p.add(p7twitter);
@@ -287,26 +312,21 @@ public class TempestTop8Maker extends JFrame
         p.add(p8char);
         p.add(altText8);
         p.add(p8alt);
-
+        
 		p.add(blank);
 
-       /* p.add(meleeWinner);
-        p.add(mWin);
-        p.add(rivalsWinner);
-        p.add(rWin);
-        p.add(doublesWinner);
-        p.add(dWin);*/
-
+		p.add(colorSelect);
+		p.add(boardSelect);
         p.add(bgSelect);
         p.add(gen);
 
-        // setbackground of panel
+        //Set background of panel
         p.setBackground(Color.white);
 
-        // add panel to frame
+        //Adds panel to frame
         f.add(p);
 
-        // set the size of frame
+        //Set frame specs
         f.setSize(365, 900);
         f.setResizable(false);
 

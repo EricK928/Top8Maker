@@ -5,10 +5,10 @@ public class TournamentInfo
 	private String date;
 	private String entrants;
 	private String location;
-	private String bgPath;
+	
 	private String url;
 
-	public TournamentInfo(String name, String n, String d, String e, String l, String b, String u)
+	public TournamentInfo(String name, String n, String d, String e, String l, String u)
 	{
 		if(n.equals(""))
 		{
@@ -16,14 +16,13 @@ public class TournamentInfo
 		}
 		else
 		{
-			num="#"+n;
+			num=" #"+n;
 		}
 		
 		this.name=name;
 		date=d;
 		entrants=e;
 		location=l;
-		bgPath=b;
 		url=u;
 	}
 
@@ -77,15 +76,7 @@ public class TournamentInfo
 		return this.location;
 	}
 	
-	public void setBackground(String b)
-	{
-		bgPath=b;
-	}
 
-	public String getBackground()
-	{
-		return this.bgPath;
-	}
 	
 	public void setURL(String b)
 	{
