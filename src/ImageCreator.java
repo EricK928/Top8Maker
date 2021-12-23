@@ -14,9 +14,10 @@ public class ImageCreator extends Canvas
 	private ImageLocations i;
 	private Player p1, p2, p3, p4, p5, p6, p7, p8;
 	private BufferedImage info, bg, c1, c2, c3, c4, c5, c6, c7, c8;
-	private Color col;
+	private Color boarder, infoText, name, twitter;
+	private URL bgURL, infoURL, c1URL;
 
-	public ImageCreator(Player p1, Player p2, Player p3, Player p4, Player p5, Player p6, Player p7, Player p8, TournamentInfo t, ImageLocations i, Color col)
+	public ImageCreator(Player p1, Player p2, Player p3, Player p4, Player p5, Player p6, Player p7, Player p8, TournamentInfo t, ImageLocations i, ColorData col)
 	{
 		this.t=t;
 		this.i=i;
@@ -28,14 +29,18 @@ public class ImageCreator extends Canvas
 		this.p6=p6;
 		this.p7=p7;
 		this.p8=p8;
-		this.col=col;
+		
+		boarder=col.getBoarderColor();
+		infoText=col.getInfoColor();
+		name=col.getNameColor();
+		twitter=col.getTwitterColor();
 
        try
        {
      	  
      	  if(i.getBackground()==null)
      	  {
-     		  URL bgURL=getClass().getResource("/resources/bg.png");
+     		  bgURL=getClass().getResource("/resources/bg.png");
      		  bg = ImageIO.read(bgURL);
      	  }
      	  else
@@ -43,10 +48,10 @@ public class ImageCreator extends Canvas
      		 bg = ImageIO.read(new File(i.getBackground()));
      	  }
      	  
-     	  URL infoURL = getClass().getResource("/resources/template.png");
+     	  infoURL = getClass().getResource("/resources/template.png");
           info=ImageIO.read(infoURL);
 
-     	  URL c1URL = getClass().getResource("/resources/characters/"+p1.getCharacter()+p1.getAlt()+".png");
+     	  c1URL = getClass().getResource("/resources/characters/"+p1.getCharacter()+p1.getAlt()+".png");
           c1=ImageIO.read(c1URL);
            
           URL c2URL = getClass().getResource("/resources/characters/"+p2.getCharacter()+p2.getAlt()+".png");
@@ -90,6 +95,15 @@ public class ImageCreator extends Canvas
 			
 			if(flag==2)
 			{
+				MainColorFinder mc=new MainColorFinder(bg);
+				Color op=mc.getMainColorOpposite();
+				System.out.println(op);
+				
+				float red=op.getRed()/255;
+				float blue=op.getBlue()/255;
+				float green=op.getGreen()/255;
+				//a.addAttribute(TextAttribute.BACKGROUND, new Color(red,green,blue,0.5f), 0, text.length());
+				
 				a.addAttribute(TextAttribute.BACKGROUND, new Color(1.0f,1.0f,1.0f,0.42f), 0, text.length());
 			}
 		}
@@ -104,14 +118,14 @@ public class ImageCreator extends Canvas
 	
 	public void printNames(Graphics font, Graphics img)
 	{
-		drawName(font,img,p1.getName(),155,240,0,36,Color.BLACK);
-		drawName(font,img,p2.getName(),773,240,0,36,Color.BLACK);
-		drawName(font,img,p3.getName(),155,340,0,36,Color.BLACK);
-		drawName(font,img,p4.getName(),773,340,0,36,Color.BLACK);
-		drawName(font,img,p5.getName(),155,440,0,36,Color.BLACK);
-		drawName(font,img,p6.getName(),773,440,0,36,Color.BLACK);
-		drawName(font,img,p7.getName(),155,540,0,36,Color.BLACK);
-		drawName(font,img,p8.getName(),773,540,0,36,Color.BLACK);
+		drawName(font,img,p1.getName(),155,240,0,36,name);
+		drawName(font,img,p2.getName(),773,240,0,36,name);
+		drawName(font,img,p3.getName(),155,340,0,36,name);
+		drawName(font,img,p4.getName(),773,340,0,36,name);
+		drawName(font,img,p5.getName(),155,440,0,36,name);
+		drawName(font,img,p6.getName(),773,440,0,36,name);
+		drawName(font,img,p7.getName(),155,540,0,36,name);
+		drawName(font,img,p8.getName(),773,540,0,36,name);
 	}
 	
 	public void printPlacements(Graphics font, Graphics img)
@@ -142,22 +156,22 @@ public class ImageCreator extends Canvas
 			location="     "+location;
 		}
 
-		drawName(font,img,t.getName()+t.getNum(),50,87,2,48,Color.BLACK);
-		drawName(font,img,"Top 8",50,150,2,48,Color.BLACK);
-		drawName(font,img,t.getEntrants()+" Entrants"+date+location,50,629,2,32,Color.BLACK);
-		drawName(font,img,t.getURL(),50,682,2,32,Color.BLACK);
+		drawName(font,img,t.getName()+t.getNum(),50,87,2,48,infoText);
+		drawName(font,img,"Top 8",50,150,2,48,infoText);
+		drawName(font,img,t.getEntrants()+" Entrants"+date+location,50,629,2,32,infoText);
+		drawName(font,img,t.getURL(),50,682,2,32,infoText);
 	}
 
 	public void printTwitters(Graphics font, Graphics img)
 	{
-		drawName(font,img,p1.getTwitter(),82,273,0,20,Color.WHITE);
-		drawName(font,img,p2.getTwitter(),699,273,0,20,Color.WHITE);
-		drawName(font,img,p3.getTwitter(),82,373,0,20,Color.WHITE);
-		drawName(font,img,p4.getTwitter(),699,373,0,20,Color.WHITE);
-		drawName(font,img,p5.getTwitter(),82,473,0,20,Color.WHITE);
-		drawName(font,img,p6.getTwitter(),699,473,0,20,Color.WHITE);
-		drawName(font,img,p7.getTwitter(),82,573,0,20,Color.WHITE);
-		drawName(font,img,p8.getTwitter(),699,573,0,20,Color.WHITE);
+		drawName(font,img,p1.getTwitter(),82,273,0,20,twitter);
+		drawName(font,img,p2.getTwitter(),699,273,0,20,twitter);
+		drawName(font,img,p3.getTwitter(),82,373,0,20,twitter);
+		drawName(font,img,p4.getTwitter(),699,373,0,20,twitter);
+		drawName(font,img,p5.getTwitter(),82,473,0,20,twitter);
+		drawName(font,img,p6.getTwitter(),699,473,0,20,twitter);
+		drawName(font,img,p7.getTwitter(),82,573,0,20,twitter);
+		drawName(font,img,p8.getTwitter(),699,573,0,20,twitter);
 	}
 
 	public void paint(Graphics font)
@@ -175,8 +189,8 @@ public class ImageCreator extends Canvas
 		fontT.drawImage(info,0,0,null);
 		imgG.drawImage(info,0,0,null);
         
-        fontT.setColor(col);
-        imgG.setColor(col);
+        fontT.setColor(boarder);
+        imgG.setColor(boarder);
         
         fontT.fillRect(0, 0, 1280, 20);
         fontT.fillRect(0, 20, 20, 700);

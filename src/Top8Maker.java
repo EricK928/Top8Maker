@@ -6,7 +6,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class Top8Maker extends JFrame
 {
-	static String[] characters = {"Mario", "Donkey Kong", "Link", "Samus", "Dark Samus", "Yoshi", "Kirby", "Fox", "Pikachu", "Luigi", "Ness", "Captain Falcon", "Jigglypuff", "Peach", "Daisy", "Bowser", "Ice Climbers", "Sheik", "Zelda", "Doctor Mario", "Pichu", "Falco", "Marth", "Lucina", "Young Link", "Ganondorf", "Mewtwo", "Roy", "Chrom", "Mr. Game & Watch", "Meta Knight", "Pit", "Dark Pit", "Zero Suit Samus", "Wario", "Snake", "Ike", "Pokemon Trainer", "Diddy Kong", "Lucas", "Sonic", "King Dedede", "Olimar", "Lucario", "R.O.B.", "Toon Link", "Wolf", "Villager", "Megaman", "Wii Fit Trainer", "Rosalina & Luma", "Little Mac", "Greninja", "Palutena", "Pac-man", "Robin", "Shulk", "Bowser Jr.", "Duck Hunt", "Ryu", "Ken", "Cloud", "Corrin", "Bayonetta", "Inkling", "Ridley", "Simon", "Richter", "King K. Rool", "Isabelle", "Incineroar", "Piranha Plant", "Joker", "Hero", "Banjo & Kazooie", "Terry", "Byleth", "Min-Min", "Steve", "Sephiroth", "Pyra", "Mythra", "Kazuya", "Mii Brawler", "Mii Swordfighter", "Mii Gunner"};// 
+	static String[] characters = {"Mario", "Donkey Kong", "Link", "Samus", "Dark Samus", "Yoshi", "Kirby", "Fox", "Pikachu", "Luigi", "Ness", "Captain Falcon", "Jigglypuff", "Peach", "Daisy", "Bowser", "Ice Climbers", "Sheik", "Zelda", "Doctor Mario", "Pichu", "Falco", "Marth", "Lucina", "Young Link", "Ganondorf", "Mewtwo", "Roy", "Chrom", "Mr. Game & Watch", "Meta Knight", "Pit", "Dark Pit", "Zero Suit Samus", "Wario", "Snake", "Ike", "Pokemon Trainer", "Diddy Kong", "Lucas", "Sonic", "King Dedede", "Olimar", "Lucario", "R.O.B.", "Toon Link", "Wolf", "Villager", "Megaman", "Wii Fit Trainer", "Rosalina & Luma", "Little Mac", "Greninja", "Palutena", "Pac-man", "Robin", "Shulk", "Bowser Jr.", "Duck Hunt", "Ryu", "Ken", "Cloud", "Corrin", "Bayonetta", "Inkling", "Ridley", "Simon", "Richter", "King K. Rool", "Isabelle", "Incineroar", "Piranha Plant", "Joker", "Hero", "Banjo & Kazooie", "Terry", "Byleth", "Min-Min", "Steve", "Sephiroth", "Pyra", "Mythra", "Kazuya", "Sora", "Mii Brawler", "Mii Swordfighter", "Mii Gunner"};// 
 	static String[] alts = {"1","2","3","4","5","6","7","8"};
 	static String bgLocation, boardLocation=null;
     //JFrame
@@ -141,10 +141,11 @@ public class Top8Maker extends JFrame
 				
 				TournamentInfo ti=new TournamentInfo(tName.getText(), tNum.getText(), tDate.getText(), entrantNum.getText(), tLoc.getText(), tUrl.getText());
 				ImageLocations il=new ImageLocations(bgLocation, boardLocation);
+				ColorData cd=new ColorData(boarder.getColor(), Color.BLACK, Color.BLACK, Color.WHITE);
 
 				JFrame img=new JFrame("Top 8 Graphic");
 				img.setSize(1296, 759);
-        		img.add(new ImageCreator(p1, p2, p3, p4, p5, p6, p7, p8, ti, il, boarder.getColor()));
+        		img.add(new ImageCreator(p1, p2, p3, p4, p5, p6, p7, p8, ti, il, cd));
 				img.setVisible(true);
 		    }
 		});
